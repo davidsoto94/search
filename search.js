@@ -16,7 +16,7 @@ async function main() {
         for (let i = 1; i <= worksheet.rowCount; i++) {
             const row = worksheet.getRow(i);
             //check if the value of the cell CH, CI or CJ is equal to the param
-            if (['CH', 'CI'].some(cell => Math.floor(row.getCell(cell).value?.result) == Number(param))) {
+            if (['CH', 'CI'].some(cell => Math.floor(row.getCell(cell).value?.result) == Number(param)|| Math.floor(row.getCell(cell).value) == Number(param))) {
                 const cellNames = [
                     'CC', 'CD', 'CE', 'CF','CG', 'CH', 'CI', 'CJ', 'CK', 'CL', 'CM'];
                 // Iterate over the cell names
@@ -31,7 +31,7 @@ async function main() {
             }
     
             //check if the value of the cell CW, CX or CY is equal to the param
-            if (['CW', 'CX'].some(cell => Math.floor(row.getCell(cell).value?.result) == Number(param))) {
+            if (['CW', 'CX'].some(cell => Math.floor(row.getCell(cell).value?.result) == Number(param) || Math.floor(row.getCell(cell).value) == Number(param))) {
                 const cellNames = ['CR', 'CS', 'CT', 'CU','CV', 'CW', 'CX', 'CY', 'CZ', 'DA', 'DB'];
     
                 cellNames.forEach(cellName => {
@@ -43,8 +43,7 @@ async function main() {
     
                 resultArray.push(["C6E0B4",...cellNames.map(cellName => row.getCell(cellName).value)]);
             }
-    
-            if (['DL', 'DM'].some(cell => Math.floor(row.getCell(cell).value?.result) == Number(param))) {
+            if (['DL', 'DM'].some(cell => Math.floor(row.getCell(cell).value?.result) == Number(param) || Math.floor(row.getCell(cell).value) == Number(param))) {
                 const cellNames = ['DG', 'DH', 'DI', 'DJ', 'DK', 'DL', 'DM', 'DN', 'DO', 'DP', 'DQ'];
                 // Iterate over the cell names
                 for (let cellName of cellNames) {
@@ -62,7 +61,7 @@ async function main() {
             }
     
              //check if the value of the cell CW, CX or CY is equal to the param
-             if (['DZ', 'EA'].some(cell => Math.floor(row.getCell(cell).value?.result) == Number(param))) {
+             if (['DZ', 'EA'].some(cell => Math.floor(row.getCell(cell).value?.result) == Number(param) || Math.floor(row.getCell(cell).value) == Number(param))) {
                 const cellNames = ['DU', 'DV', 'DW', 'DX','DY', 'DZ', 'EA', 'EB', 'EC', 'ED', 'EE'];
     
                 cellNames.forEach(cellName => {
@@ -75,7 +74,7 @@ async function main() {
                 resultArray.push(["BDD7EE",...cellNames.map(cellName => row.getCell(cellName).value)]);
             }
     
-            if (['EO', 'EP'].some(cell => Math.floor(row.getCell(cell).value?.result) == Number(param))) {
+            if (['EO', 'EP'].some(cell => Math.floor(row.getCell(cell).value?.result) == Number(param) || Math.floor(row.getCell(cell).value) == Number(param))) {
                 const cellNames = ['EJ', 'EK', 'EL', 'EM','EN', 'EO', 'EP', 'EQ', 'ER', 'ES', 'ET'];
     
                 cellNames.forEach(cellName => {
@@ -88,7 +87,7 @@ async function main() {
                 resultArray.push(["FFE699",...cellNames.map(cellName => row.getCell(cellName).value)]);
             }
     
-            if (['FD', 'FE'].some(cell => Math.floor(row.getCell(cell).value?.result) == Number(param))) {
+            if (['FD', 'FE'].some(cell => Math.floor(row.getCell(cell).value?.result) == Number(param) || Math.floor(row.getCell(cell).value) == Number(param))) {
                 const cellNames = ['EY', 'EZ', 'FA', 'FB', 'FC', 'FD', 'FE', 'FF', 'FG', 'FH', 'FI'];
     
                 cellNames.forEach(cellName => {
