@@ -6,24 +6,32 @@ async function main() {
     await workbook.xlsx.readFile('LMSDcompleta.xlsx');
     const spectersWorkbook = new ExcelJS.Workbook();
     await spectersWorkbook.xlsx.readFile('listaEspectros.xlsx');
-    const worksheet = workbook.getWorksheet(1);
-    const spectersWorksheet = spectersWorkbook.getWorksheet(1);
+    const worksheet = workbook.getWorksheet(2);
+    const spectersWorksheet = spectersWorkbook.getWorksheet(4);
     const resultArray = [];
-    
     for (let x = 1; x <= spectersWorksheet.rowCount; x++) {
         const param = Math.floor(spectersWorksheet.getRow(x).getCell('A').value);
+        if(param==0){
+            continue
+        }
         resultArray.push(["FFFFFF",spectersWorksheet.getRow(x).getCell('A').value]);
         for (let i = 1; i <= worksheet.rowCount; i++) {
             const row = worksheet.getRow(i);
             //check if the value of the cell CH, CI or CJ is equal to the param
-            if (['CH', 'CI'].some(cell => Math.floor(row.getCell(cell).value?.result) == Number(param)|| Math.floor(row.getCell(cell).value) == Number(param))) {
+            if (['G'].some(cell => Math.floor(row.getCell(cell).value?.result) == Number(param)|| Math.floor(row.getCell(cell).value) == Number(param))) {
                 const cellNames = [
-                    'CC', 'CD', 'CE', 'CF','CG', 'CH', 'CI', 'CJ', 'CK', 'CL', 'CM'];
+                    'B', 'C','D', 'E', 'F','G', 'H', 'I', 'J'];
                 // Iterate over the cell names
                 cellNames.forEach(cellName => {
                     let cellValue = row.getCell(cellName).value;
-                    if (typeof cellValue == 'object') {
+                    if (typeof cellValue == 'object' && cellValue!=null) {
+                        // If it is, update the cell value with the result property of the object
                         row.getCell(cellName).value = cellValue.result;
+                    }
+                    else if(typeof cellValue == Number){
+                        console.log(cellName)
+                        console.log(cellValue)
+                        row.getCell(cellName).value = cellValue;
                     }
                 });
                 //insert the row from vell CC to cell CM in the resultArray all in one line 
@@ -31,29 +39,40 @@ async function main() {
             }
     
             //check if the value of the cell CW, CX or CY is equal to the param
-            if (['CW', 'CX'].some(cell => Math.floor(row.getCell(cell).value?.result) == Number(param) || Math.floor(row.getCell(cell).value) == Number(param))) {
-                const cellNames = ['CR', 'CS', 'CT', 'CU','CV', 'CW', 'CX', 'CY', 'CZ', 'DA', 'DB'];
+            if (['T'].some(cell => Math.floor(row.getCell(cell).value?.result) == Number(param) || Math.floor(row.getCell(cell).value) == Number(param))) {
+                const cellNames = ['O','P','Q', 'R', 'S', 'T','U', 'V', 'W'];
     
                 cellNames.forEach(cellName => {
                     let cellValue = row.getCell(cellName).value;
-                    if (typeof cellValue == 'object') {
+                    if (typeof cellValue == 'object' && cellValue!=null) {
+                        console.log(cellName)
+                        console.log(cellValue)
+                        // If it is, update the cell value with the result property of the object
                         row.getCell(cellName).value = cellValue.result;
+                    }
+                    else if(typeof cellValue == Number){
+                        row.getCell(cellName).value = cellValue;
                     }
                 });
     
                 resultArray.push(["C6E0B4",...cellNames.map(cellName => row.getCell(cellName).value)]);
             }
-            if (['DL', 'DM'].some(cell => Math.floor(row.getCell(cell).value?.result) == Number(param) || Math.floor(row.getCell(cell).value) == Number(param))) {
-                const cellNames = ['DG', 'DH', 'DI', 'DJ', 'DK', 'DL', 'DM', 'DN', 'DO', 'DP', 'DQ'];
+            if (['AF', 'AG'].some(cell => Math.floor(row.getCell(cell).value?.result) == Number(param) || Math.floor(row.getCell(cell).value) == Number(param))) {
+                const cellNames = ['AB', 'AC', 'AD', 'AE','AF', 'AG', 'AH', 'AI', 'AJ'];
                 // Iterate over the cell names
                 for (let cellName of cellNames) {
                     // Get the cell value
                     let cellValue = row.getCell(cellName).value;
     
                     // Check if the cell value is an object
-                    if (typeof cellValue == 'object') {
+                    if (typeof cellValue == 'object' && cellValue!=null) {
+                        console.log(cellName)
+                        console.log(cellValue)
                         // If it is, update the cell value with the result property of the object
                         row.getCell(cellName).value = cellValue.result;
+                    }
+                    else if(typeof cellValue == Number){
+                        row.getCell(cellName).value = cellValue;
                     }
                 }
                 //insert the row from vell DG to cell DS in the resultArray all in one line 
@@ -61,39 +80,57 @@ async function main() {
             }
     
              //check if the value of the cell CW, CX or CY is equal to the param
-             if (['DZ', 'EA'].some(cell => Math.floor(row.getCell(cell).value?.result) == Number(param) || Math.floor(row.getCell(cell).value) == Number(param))) {
-                const cellNames = ['DU', 'DV', 'DW', 'DX','DY', 'DZ', 'EA', 'EB', 'EC', 'ED', 'EE'];
+             if (['AR', 'AS'].some(cell => Math.floor(row.getCell(cell).value?.result) == Number(param) || Math.floor(row.getCell(cell).value) == Number(param))) {
+                const cellNames = ['AN', 'AO', 'AP', 'AQ','AR','AS', 'AT', 'AU', 'AV'];
     
                 cellNames.forEach(cellName => {
                     let cellValue = row.getCell(cellName).value;
-                    if (typeof cellValue == 'object') {
+                    if (typeof cellValue == 'object' && cellValue!=null) {
+                        console.log(cellName)
+                        console.log(cellValue)
+                        // If it is, update the cell value with the result property of the object
                         row.getCell(cellName).value = cellValue.result;
+                    }
+                    else if(typeof cellValue == Number){
+                        row.getCell(cellName).value = cellValue;
                     }
                 });
     
                 resultArray.push(["BDD7EE",...cellNames.map(cellName => row.getCell(cellName).value)]);
             }
     
-            if (['EO', 'EP'].some(cell => Math.floor(row.getCell(cell).value?.result) == Number(param) || Math.floor(row.getCell(cell).value) == Number(param))) {
-                const cellNames = ['EJ', 'EK', 'EL', 'EM','EN', 'EO', 'EP', 'EQ', 'ER', 'ES', 'ET'];
+            if (['BE', 'BF'].some(cell => Math.floor(row.getCell(cell).value?.result) == Number(param) || Math.floor(row.getCell(cell).value) == Number(param))) {
+                const cellNames = ['BA', 'BB', 'BC', 'BD', 'BE','BF','BG','BH', 'BI'];
     
                 cellNames.forEach(cellName => {
                     let cellValue = row.getCell(cellName).value;
-                    if (typeof cellValue == 'object') {
+                    if (typeof cellValue == 'object' && cellValue!=null) {
+                        console.log(cellName)
+                        console.log(cellValue)
+                        // If it is, update the cell value with the result property of the object
                         row.getCell(cellName).value = cellValue.result;
+                    }
+                    else if(typeof cellValue == Number){
+                        row.getCell(cellName).value = cellValue;
                     }
                 });
     
                 resultArray.push(["FFE699",...cellNames.map(cellName => row.getCell(cellName).value)]);
             }
     
-            if (['FD', 'FE'].some(cell => Math.floor(row.getCell(cell).value?.result) == Number(param) || Math.floor(row.getCell(cell).value) == Number(param))) {
-                const cellNames = ['EY', 'EZ', 'FA', 'FB', 'FC', 'FD', 'FE', 'FF', 'FG', 'FH', 'FI'];
+            if (['BR', 'BS'].some(cell => Math.floor(row.getCell(cell).value?.result) == Number(param) || Math.floor(row.getCell(cell).value) == Number(param))) {
+                const cellNames = ['BN', 'BO', 'BP', 'BQ', 'BR', 'BS', 'BT', 'BU', 'BV'];
     
                 cellNames.forEach(cellName => {
                     let cellValue = row.getCell(cellName).value;
-                    if (typeof cellValue == 'object') {
+                    if (typeof cellValue == 'object' && cellValue!=null) {
+                        console.log(cellName)
+                        console.log(cellValue)
+                        // If it is, update the cell value with the result property of the object
                         row.getCell(cellName).value = cellValue.result;
+                    }
+                    else if(typeof cellValue == Number){
+                        row.getCell(cellName).value = cellValue;
                     }
                 }); 
                 resultArray.push(["FFFF99",...cellNames.map(cellName => row.getCell(cellName).value)]);
