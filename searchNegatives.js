@@ -7,7 +7,7 @@ async function main() {
     const spectersWorkbook = new ExcelJS.Workbook();
     await spectersWorkbook.xlsx.readFile('listaEspectros.xlsx');
     const worksheet = workbook.getWorksheet(2);
-    const spectersWorksheet = spectersWorkbook.getWorksheet(4);
+    const spectersWorksheet = spectersWorkbook.getWorksheet(2);
     const resultArray = [];
     for (let x = 1; x <= spectersWorksheet.rowCount; x++) {
         const param = Math.floor(spectersWorksheet.getRow(x).getCell('A').value);
