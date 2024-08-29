@@ -12,6 +12,10 @@ async function main() {
     
     for (let x = 1; x <= spectersWorksheet.rowCount; x++) {
         const param = Math.floor(spectersWorksheet.getRow(x).getCell('A').value);
+        if(param==0){
+            continue
+        }
+        console.log(spectersWorksheet.getRow(x).getCell('A').value)
         resultArray.push(["FFFFFF",spectersWorksheet.getRow(x).getCell('A').value]);
         for (let i = 1; i <= worksheet.rowCount; i++) {
             const row = worksheet.getRow(i);
@@ -116,7 +120,7 @@ async function main() {
         };
     }
     //save the new workbook
-    newWorkbook.xlsx.writeFile('resultados.xlsx');
+    newWorkbook.xlsx.writeFile('results_prositive.xlsx');
 }
 
 main()

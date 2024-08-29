@@ -7,13 +7,14 @@ async function main() {
     const spectersWorkbook = new ExcelJS.Workbook();
     await spectersWorkbook.xlsx.readFile('listaEspectros.xlsx');
     const worksheet = workbook.getWorksheet(2);
-    const spectersWorksheet = spectersWorkbook.getWorksheet(2);
+    const spectersWorksheet = spectersWorkbook.getWorksheet(1);
     const resultArray = [];
     for (let x = 1; x <= spectersWorksheet.rowCount; x++) {
         const param = Math.floor(spectersWorksheet.getRow(x).getCell('A').value);
         if(param==0){
             continue
         }
+        console.log(spectersWorksheet.getRow(x).getCell('A').value)
         resultArray.push(["FFFFFF",spectersWorksheet.getRow(x).getCell('A').value]);
         for (let i = 1; i <= worksheet.rowCount; i++) {
             const row = worksheet.getRow(i);
@@ -29,8 +30,6 @@ async function main() {
                         row.getCell(cellName).value = cellValue.result;
                     }
                     else if(typeof cellValue == Number){
-                        console.log(cellName)
-                        console.log(cellValue)
                         row.getCell(cellName).value = cellValue;
                     }
                 });
@@ -153,7 +152,7 @@ async function main() {
         };
     }
     //save the new workbook
-    newWorkbook.xlsx.writeFile('resultados.xlsx');
+    newWorkbook.xlsx.writeFile('results_negative.xlsx');
 }
 
 main()
